@@ -1,5 +1,6 @@
 import summarize from "./summarize";
 import send from "./send";
+import fetchEmailSubjects from "./fetchSubjects";
 
 // For Summarization & Sending
 async function SummarizeAndSend(): Promise<void> {
@@ -14,4 +15,15 @@ async function SummarizeAndSend(): Promise<void> {
   send(aiContent);
 }
 
-SummarizeAndSend();
+// For Fetching Subjects
+async function fetchEmails(): Promise<void> {
+  const subjects: string[] = await fetchEmailSubjects();
+  console.log("📨 Subjects fetched from Gmail:");
+  subjects.forEach((subject: string, index: number) => {
+    console.log(`${index + 1}. ${subject}`);
+  });
+}
+
+// Uncomment the one you want to run
+//SummarizeAndSend();
+fetchEmails();
